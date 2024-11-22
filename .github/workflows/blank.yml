@@ -2,16 +2,25 @@ name: Github Action
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - "main"
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - "main"
     
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Run a one-line script
+      - name: Archive the project
         run: tar -cvf project.tar .
+
+      - name: Upload the archive as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: project
+          path: project.tar
