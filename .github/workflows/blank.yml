@@ -24,4 +24,6 @@ jobs:
 
       # Step 3: Install dependencies and run tests
       - name: Run Maven Tests
-        run: mvn clean test
+        run: |
+          cd coffee-machine
+          mvn clean test
